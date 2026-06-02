@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Map Coordinate Picker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .map-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .map-image {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .marker {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background-color: red;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .coords {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Click on the Map to Get Coordinates</h1>
+
+  <div class="map-container" id="mapContainer">
+    <img
+      src="map.jpeg"
+      alt="US Map"
+      id="mapImage"
+      class="map-image"
+    />
+    <div class="marker" id="marker" style="display: none;"></div>
+  </div>
+
+  <div class="coords" id="coordsDisplay">Top: 0%, Left: 0%</div>
+
+  <script>
+    const mapImage = document.getElementById("mapImage");
+    const marker = document.getElementById("marker");
+    const coordsDisplay = document.getElementById("coordsDisplay");
+
+    mapImage.addEventListener("click", function (event) {
+      const rect = mapImage.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+
+      const adjustedX = x - 15; // adjust left
+      const adjustedY = y - 15; // adjust top
+
+      const percentX = ((adjustedX / rect.width) * 100).toFixed(2);
+      const percentY = ((adjustedY / rect.height) * 100).toFixed(2);
+
+      marker.style.left = percentX + "%";
+      marker.style.top = percentY + "%";
+      marker.style.display = "block";
+
+      coordsDisplay.textContent = `"top": "${percentY}%", "left": "${percentX}%",`;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<?php
+/* Template Name: Senior Decisions Map */
+get_header();
+?>
+<main id="primary" class="site-main">
+<div class="map-container">
+    <img src="//nshsdenebola.com/wp-content/uploads/2025/05/map.jpeg" alt="US Map" class="map-image" />
+  </div>
+
+  <div class="overlay" id="popupOverlay" onclick="closePopup()">
+    <div class="popup" onclick="event.stopPropagation()">
+      <h2 id="popupTitle">State Name</h2>
+      <p id="popupText">Placeholder text</p>
+      <ul id="popupList"></ul>
+    </div>
+    <img id="popupImage" src="" alt="State Image" style="width: 700px; height: auto; border-radius: 15px; margin-left: 20px;" />
+  </div>
+</main>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <style>
+            body {
+      margin: 0;
+      font-family: "Trebuchet MS", Helvetica, sans-serif;
+      line-height: 1.3;
+    }
+
+    .map-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    .map-image {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .state-button {
+      position: absolute;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .inner-button {
+      width: 40px;
+      height: 40px;
+      background-image: url('//nshsdenebola.com/wp-content/uploads/2025/05/graduationcap1.png');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border-radius: 4px;
+    }
+
+    .button-label {
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      font-size: 10px;
+      padding: 2px 4px;
+      border-radius: 3px;
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+    }
+
+    .state-button:hover {
+      transform: scale(1.3);
+    }
+
+    .overlay {
+      opacity: 0;
+      visibility: hidden;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .popup {
+      background: white url() no-repeat center/cover;
+      padding: 20px;
+      width: 600px;
+      height: 400px;
+      box-shadow: 0 0 10px #000;
+      position: relative;
+      overflow-y: auto;
+      border-radius: 25px;
+      border: 2px solid #000;
+      transform: scale(0.8);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .overlay.show .popup {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .popup h2 {
+      margin: 0 0 10px 0;
+      color: black;
+    }
+
+    .popup p {
+      color: black;
+      font-size: 14px;
+    }
+    </style>
+<script>
+  let stateData = [];
+
+  fetch('https://raw.githubusercontent.com/chenjayden/State-Names-Data/0e311766ceec9e6ce6edfa23609fc099933d065b/stateData.json')
+    .then(response => response.json())
+    .then(data => {
+      stateData = data;
+
+      const mapContainer = document.querySelector('.map-container');
+
+      stateData.forEach(state => {
+        const button = document.createElement('button');
+        button.className = 'state-button';
+        button.style.top = state.top;
+        button.style.left = state.left;
+        button.setAttribute('data-state', state.name);
+        button.setAttribute('data-text', state.text);
+
+        // Create the inner image+label div
+        const innerDiv = document.createElement("div");
+        innerDiv.className = "inner-button";
+
+        const label = document.createElement("span");
+        label.className = "button-label";
+        label.textContent = state.students?.length || 0;
+
+        innerDiv.appendChild(label);
+        button.appendChild(innerDiv);
+
+        button.addEventListener('click', () => {
+          document.getElementById('popupTitle').textContent = state.name;
+          document.getElementById('popupText').textContent = state.text;
+
+          const list = document.getElementById('popupList');
+          list.innerHTML = '';
+
+          state.students.forEach(student => {
+            const li = document.createElement('li');
+            li.textContent = student;
+            list.appendChild(li);
+          });
+
+          const img = document.getElementById('popupImage');
+          const imageName = state.name.toLowerCase().replace(/\s+/g, '') + '.webp';
+          img.src = imageName;
+          img.src = `//nshsdenebola.com/wp-content/uploads/2025/05/${imageName}`
+
+          document.getElementById('popupOverlay').classList.add('show');
+        });
+
+        mapContainer.appendChild(button);
+      });
+    })
+    .catch(error => console.error('Error loading JSON:', error));
+
+  function closePopup() {
+    document.getElementById('popupOverlay').classList.remove('show');
+  }
+        </script>
+<?php get_footer(); ?>
