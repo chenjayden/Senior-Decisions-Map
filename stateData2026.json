@@ -98,6 +98,7 @@
         "students": [
             "Alvin Wright – Bethune-Cookman University",
             "John (Nathaniel) English – University of Florida",
+            "Amanda Davis – University of Miami",
             "Aviel Burmenko – University of Miami",
             "Nikhil Hiatt – University of Miami",
             "Paulina Roytman – University of Miami",
@@ -201,12 +202,10 @@
         "students": [
             "Adanna Anigbogu – Northeastern University",
             "Akshay (Akshay) Sayana-Dudani – Northeastern University",
-            "Aleeza Amitan – Dartmouth College",
             "Alexander Maciejuk – Stonehill College",
             "Alexander O'Brien – Northeastern University",
             "Alexander (Alex) Li – Tufts University",
             "Alexander (Alexander) Wu – UMass Amherst",
-            "Amanda Davis – University of Miami",
             "Andrew Scheufele – UMass Amherst",
             "Anna Aiello – UMass Dartmouth",
             "Anthony Luo – Tufts University",
@@ -247,7 +246,6 @@
             "Eric Chen – Northeastern University",
             "Erik Sternlof – UMass Amherst",
             "Ethan Peller – Brandeis University",
-            "Ethan (Ethan) Qian-Tsuchida – Brown University",
             "Eva Falkenstein – UMass Amherst",
             "Eva Meshalkina – Massachusetts College of Art and Design",
             "Evan Gan – Worcester Polytechnic Institute",
@@ -335,7 +333,6 @@
             "Vicky (Vicky) Zou – Bentley University",
             "Vishwa (Vishwa) Srinivasan – Northwestern University",
             "Vivian (Vi) Ferracini – University of Massachusetts Boston",
-            "William (Will) Everett – Dartmouth College",
             "Yanka Chowdhury – UMass Boston, then UMass Amherst",
             "Yasen Dimitrov – Berklee College of Music",
             "Zijie (Jade) Fu – New England Conservatory"
@@ -377,11 +374,13 @@
         "top": "23.44%",
         "left": "88.69%",
         "students": [
+            "Aleeza Amitan – Dartmouth College",
             "Dalia Atieh – University of New Hampshire",
             "Eli Yacovi – University of New Hampshire",
             "Ethan Matas – Colby-Sawyer College",
             "Joshua (Josh) Whitney – University of New Hampshire",
-            "Lawman Johnson – University of New Hampshire"
+            "Lawman Johnson – University of New Hampshire",
+            "William (Will) Everett – Dartmouth College"
         ]
     },
     {
@@ -500,6 +499,7 @@
             "Adrian Sirotin – Roger Williams University",
             "Angelina Tian – Rhode Island School of Design",
             "Chloe Khozozian – Salve Regina University",
+            "Ethan (Ethan) Qian-Tsuchida – Brown University",
             "Joelle Weldon – Providence College"
         ]
     },
